@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>City service</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 15%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 4px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 20px;
+        padding-left: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="floating-panel">
+    <b>Source: </b>
+    <p id="start" value={{ city1 }}>{{ city1 }}</p>
+    <b>Destination: </b>
+    <p id="end" value={{ city2 }}>{{ city2  }}</p>
+    </div>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 6,
+          center: {lat: 41.85, lng: -87.65}
+        });
+        directionsDisplay.setMap(map);
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
+
+        document.getElementById('start').value;
+	console.log(document);
+        document.getElementById('end').value;
+      }
+
+      function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        directionsService.route({
+	  origin: 'new york, ny',
+	  destination: 'chicago, il',
+          travelMode: google.maps.TravelMode.DRIVING
+        }, function(response, status) {
+          if (status === google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+      initMap();
+      calculateAndDisplayRoute(directionsService, directionsDisplay);
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGmeGVh6U9kpRljChL34ma9fgPVgcznjs&callback=initMap">
+    </script>
+  </body>
+</html>
+

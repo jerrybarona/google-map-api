@@ -1,0 +1,41 @@
+
+<html>
+  <script src="https://www.google.com/jsapi" type="text/javascript"></script>
+  <script>
+    google.load('visualization', '1', {packages:['table']});
+
+    google.setOnLoadCallback(drawTable);
+    function drawTable() {
+      var jscode_data = new google.visualization.DataTable();
+jscode_data.addColumn("string", "Indicator", "indicator");
+jscode_data.addColumn("string", "City Name", "city_name");
+jscode_data.addColumn("string", "Timestamp", "timestamp");
+jscode_data.addColumn("string", "Temperature", "temperature");
+jscode_data.addColumn("string", "Temperature Unit", "unit");
+jscode_data.addRows(2);
+jscode_data.setCell(0, 0, "Source");
+jscode_data.setCell(0, 1, "");
+jscode_data.setCell(0, 2, "");
+jscode_data.setCell(0, 3, "");
+jscode_data.setCell(0, 4, "Degree Celcius");
+jscode_data.setCell(1, 0, "Destination");
+jscode_data.setCell(1, 1, "");
+jscode_data.setCell(1, 2, "");
+jscode_data.setCell(1, 3, "");
+jscode_data.setCell(1, 4, "Degree Celcius");
+
+      var jscode_table = new google.visualization.Table(document.getElementById('table_div_jscode'));
+      jscode_table.draw(jscode_data, {showRowNumber: true});
+
+      var json_table = new google.visualization.Table(document.getElementById('table_div_json'));
+      var json_data = new google.visualization.DataTable({"rows":[{"c":[{"v":"Source"},{"v":""},{"v":""},{"v":""},{"v":"Degree Celcius"}]},{"c":[{"v":"Destination"},{"v":""},{"v":""},{"v":""},{"v":"Degree Celcius"}]}],"cols":[{"type":"string","id":"indicator","label":"Indicator"},{"type":"string","id":"city_name","label":"City Name"},{"type":"string","id":"timestamp","label":"Timestamp"},{"type":"string","id":"temperature","label":"Temperature"},{"type":"string","id":"unit","label":"Temperature Unit"}]}, 0.6);
+      json_table.draw(json_data, {showRowNumber: true});
+    }
+  </script>
+  <body>
+    <H1>Table created using ToJSCode</H1>
+    <div id="table_div_jscode"></div>
+    <H1>Table created using ToJSon</H1>
+    <div id="table_div_json"></div>
+  </body>
+</html>

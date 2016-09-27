@@ -1,0 +1,84 @@
+<style type="text/css">
+#wrap {
+   width:100%;
+   margin:0 auto;
+}
+#left_col {
+   float:left;
+   width:50%;
+}
+#right_col {
+   float:right;
+   width:50%;
+}
+</style>
+
+
+<div id="wrap">
+    <div id="left_col">
+        <h2>Temperature Service</h2>
+	{% if s %}
+            <form action="/route/temperatures/" method="post">
+                {% csrf_token %}
+            <h3>{{ stitle }}</h3>
+            <ul>
+            {% for scity in s %}
+                <input type="radio" name="scity" id="scity{{ forloop.counter }}" value="{{ scity.id }}" />
+                <label for="scity{{ forloop.counter }}">{{ scity.source_text }}</label><br />    
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No polls are available.</p>
+        {% endif %}
+        {% if d %}
+            <h3>{{ dtitle }}</h3>
+            <ul>
+            {% for dcity in d %}
+                <input type="radio" name="dcity" id="dcity{{ forloop.counter }}" value="{{ dcity.id }}" />
+                <label for="dcity{{ forloop.counter }}">{{ dcity.destination_text }}</label><br />    
+                <li><a href="/route/{{ dcity.id }}/">{{ dcity.destination_text }}</a></li>
+            {% endfor %}
+            </ul>
+            <input type="submit" value="Get Temperature" />
+            </form>    
+            </ul>
+        {% else %}
+            <p>No cities are available.</p>
+        {% endif %}
+
+
+    </div>
+    <div id="right_col">
+        <h2>Route Service</h2>
+	{% if s %}
+	    <form action="/route/routes/" method="post">
+		{% csrf_token %}
+	    <h3>{{ stitle }}</h3>
+	    <ul>
+	    {% for scity in s %}
+		<input type="radio" name="scity" id="scity{{ forloop.counter }}" value="{{ scity.id }}" />
+		<label for="scity{{ forloop.counter }}">{{ scity.source_text }}</label><br />    
+		<li><a href="/route/{{ scity.id }}/">{{ scity.source_text }}</a></li>
+	    {% endfor %}
+	    </ul>
+	{% else %}
+	    <p>No polls are available.</p>
+	{% endif %}
+	{% if d %}
+	    <h3>{{ dtitle }}</h3>
+	    <ul>
+	    {% for dcity in d %}
+		<input type="radio" name="dcity" id="dcity{{ forloop.counter }}" value="{{ dcity.id }}" />
+		<label for="dcity{{ forloop.counter }}">{{ dcity.destination_text }}</label><br />    
+		<li><a href="/route/{{ dcity.id }}/">{{ dcity.destination_text }}</a></li>
+	    {% endfor %}
+	    </ul>
+	    <input type="submit" value="Get Route" />
+	    </form>    
+	{% else %}
+	    <p>No cities are available.</p>
+	{% endif %}
+
+    </div>
+</div>
+

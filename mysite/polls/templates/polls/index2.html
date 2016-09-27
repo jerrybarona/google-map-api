@@ -1,0 +1,30 @@
+
+<html>
+  <script src="https://www.google.com/jsapi" type="text/javascript"></script>
+  <script>
+    google.load('visualization', '1', {packages:['table']});
+
+    google.setOnLoadCallback(drawTable);
+    function drawTable() {
+      var jscode_data = new google.visualization.DataTable();
+jscode_data.addColumn("string", "Current Time", "current_time");
+jscode_data.addColumn("string", "Temperature", "temperature");
+jscode_data.addColumn("string", "Temperature Unit", "unit");
+jscode_data.addRows(1);
+jscode_data.setCell(0, 0, "2016-03-26 01:17:22.791077");
+jscode_data.setCell(0, 1, "23.0197");
+jscode_data.setCell(0, 2, "Degree Celcius");
+
+      var jscode_table = new google.visualization.Table(document.getElementById('table_div_jscode'));
+      jscode_table.draw(jscode_data, {showRowNumber: true});
+
+      var json_table = new google.visualization.Table(document.getElementById('table_div_json'));
+      var json_data = new google.visualization.DataTable({"rows":[{"c":[{"v":"2016-03-26 01:17:22.791077"},{"v":"23.0197"},{"v":"Degree Celcius"}]}],"cols":[{"type":"string","id":"current_time","label":"Current Time"},{"type":"string","id":"temperature","label":"Temperature"},{"type":"string","id":"unit","label":"Temperature Unit"}]}, 0.6);
+      json_table.draw(json_data, {showRowNumber: true});
+    }
+  </script>
+  <body>
+    <H1>Temperature from Intel Edison</H1>
+    <div id="table_div_jscode"></div>
+  </body>
+</html>

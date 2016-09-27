@@ -1,0 +1,19 @@
+FOR QUESTION 1
+
+- cd into "mysite" from the main directory
+
+- Run this from the command line:
+python manage.py runserver 160.39.198.125:8000
+
+- In the web address box of your browser, go to:
+160.39.198.125:8000/city_temp
+
+FOR QUESTION 2
+
+- cd into "city" from the main directory
+
+- Run this from the command line:
+python manage.py runserver 160.39.198.125:8000
+
+- In the web address box of your browser, go to:
+160.39.198.125:8000/city_temp
