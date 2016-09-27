@@ -1,6 +1,6 @@
 import pyowm
 
-owm = pyowm.OWM('30cbc7eb4adcaf552efc6c12fa10a648')
+owm = pyowm.OWM('XXXXXXX')
 
 # You have a pro subscription? Use:
 # owm = pyowm.OWM(API_key='your-API-key', subscription_type='pro')
